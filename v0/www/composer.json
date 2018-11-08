@@ -1,0 +1,7 @@
+{
+    "require": {
+		"slim/slim":"^3.11",
+		"fzaninotoo":"^1.8",
+		"gabordemooij":"^5.1"
+    }
+}
