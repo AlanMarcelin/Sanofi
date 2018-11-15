@@ -1,0 +1,57 @@
+<?php
+chdir(__DIR__);
+require './vendor/autoload.php';
+require './config.php';
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+use \RedBeanPHP\R as R;
+
+$app = new \Slim\App([
+    'settings' => [
+        'displayErrorDetails' => true
+    ]
+]);
+
+
+$app = new \Slim\App;
+
+
+$app->get('/users', function (Request $request, Response $response, array $args) {
+    //affichage des utilisateurs de la BDD
+
+    $users= R::getAll( 'SELECT * FROM users' );
+    $response->getBody()->write(json_encode($users));
+
+    return $response->withJson($users);
+});
+
+$app->get('/vehicle', function (Request $request, Response $response, array $args) {
+    //affichage des véhicules de la BDD
+
+    $vehicles= R::getAll( 'SELECT * FROM vehicle' );
+    $response->getBody()->write(json_encode($vehicles));
+
+    return $response->withJson($vehicles);l
+});
+
+$app->get('/expenseSheet', function (Request $request, Response $response, array $args) {
+    //affichage des utilisateurs de la BDD
+
+    $expenseSheet= R::getAll( 'SELECT * FROM users' );
+    $response->getBody()->write(json_encode($expenseSheet));
+
+    return $response->withJson($expenseSheet);
+});
+
+$app->get('/expenseLine', function (Request $request, Response $response, array $args) {
+    //affichage des utilisateurs de la BDD
+
+    $expenseLine= R::getAll( 'SELECT * FROM expenseLine' );
+    $response->getBody()->write(json_encode($expenseLine));
+
+    return $response->withJson($expenseLine);
+});
+
+
+
+$app->run();
